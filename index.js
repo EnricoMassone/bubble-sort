@@ -15,7 +15,13 @@ const swap = (nums, i, j) => {
     );
   }
 
-  throw new Error("Not implemented");
+  if (i === j) {
+    return;
+  }
+
+  const temp = nums[i];
+  nums[i] = nums[j];
+  nums[j] = temp;
 };
 
 const bubbleSort = nums => {
@@ -35,6 +41,16 @@ const bubbleSort = nums => {
 
   do {
     swapped = false;
+
+    for (let i = 0; i < nums.length - 1; i++) {
+      const current = nums[i];
+      const next = nums[i + 1];
+
+      if (current > next) {
+        swap(nums, i, i + 1);
+        swapped = true;
+      }
+    }
   } while (swapped);
 
   return nums;
